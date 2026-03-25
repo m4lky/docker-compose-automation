@@ -1,0 +1,15 @@
+services:
+  unifi-db:
+    image: docker.io/mongo:8.0
+    container_name: unifi-db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=P@ssword
+      - MONGO_USER=unifi
+      - MONGO_PASS=password
+      - MONGO_DBNAME=unifi
+      - MONGO_AUTHSOURCE=admin
+    volumes:
+      - /home/malcolm/docker-storage/unifi-mongodb:/data/db
+      - /home/malcolm/docker-storage/unifi-mongodb/init/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
+    restart: unless-stopped

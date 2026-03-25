@@ -12,18 +12,32 @@ def get_yaml():
     ]
 
 def docker_compose_up(yaml_list):
-    for i in yaml_list:
-        up = ["docker", "compose", "-f", i, "up", "-d"]
-        subprocess.run(up, check=True)
+    for file in yaml_list:
+        try:
+            subprocess.run(
+                ["docker", "compose", "-f", file, "up", "-d"],
+                check=True
+            )
+            print(f"Started {file}")
+        except subprocess.CalledProcessError:
+            print(f"Failed to start {file}")
 
 def docker_compose_down(yaml_list):
-    for i in yaml_list:
-        down = ["docker", "compose", "-f", i, "down"]
-        subprocess.run(down, check=True)
+    for file in yaml_list:
+        try:
+            subprocess.run(
+                ["docker", "compose", "-f", file, "down"],
+                check=True
+            )
+            print(f"Started {file}")
+        except subprocess.CalledProcessError:
+            print(f"Failed to stop {file}")
 
 def main():
     yaml_list = get_yaml()
-    print(yaml_list)
+    if not yaml_list:
+        print("No YAML files found.")
+        return
     docker_compose_up(yaml_list)
     
 if __name__ == "__main__":
