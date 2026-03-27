@@ -4,15 +4,16 @@ services:
     container_name: unifi-db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=P@ssword
+      - MONGO_INITDB_ROOT_PASSWORD=Password12345
       - MONGO_USER=unifi
-      - MONGO_PASS=password
+      - MONGO_PASS=password123
       - MONGO_DBNAME=unifi
       - MONGO_AUTHSOURCE=admin
     volumes:
-      - /home/malcolm/docker-storage/unifi-mongodb:/data/db
-      - /home/malcolm/docker-storage/unifi-mongodb/init/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
+      - /home/malcolm/docker-volumes/unifi-mongodb/data:/data/db
+      - /home/malcolm/docker-volumes/unifi-mongodb/init/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
     restart: unless-stopped
+
 
   unifi-network-application:
     image: lscr.io/linuxserver/unifi-network-application:latest
@@ -24,7 +25,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - MONGO_USER=unifi
-      - MONGO_PASS=password
+      - MONGO_PASS=password123
       - MONGO_HOST=unifi-db
       - MONGO_PORT=27017
       - MONGO_DBNAME=unifi
@@ -33,7 +34,7 @@ services:
       - MEM_STARTUP=1024 #optional
       - MONGO_TLS= #optional
     volumes:
-      - /home/malcolm/docker-storage/unifi-network-appliance:/config
+      - /home/malcolm/docker-volumes/unifi-network-appliance:/config
     ports:
       - 8443:8443
       - 3478:3478/udp
