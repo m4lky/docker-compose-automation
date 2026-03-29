@@ -10,7 +10,6 @@ Repo used for active docker-compose files
 │   │       └── prometheus.yml
 │   └── reverse-proxy
 │       └── docker-compose.yml
-├── README.md
 └── services
     ├── jenkins
     │   └── docker-compose.yml
