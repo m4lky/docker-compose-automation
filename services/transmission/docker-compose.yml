@@ -6,7 +6,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - # TRANSMISSION_WEB_HOME=/combustion-release/
+       # TRANSMISSION_WEB_HOME=/combustion-release/
     volumes:
       - /home/malcolm/docker-volumes/transmission/config:/config
       - /home/malcolm/truenas/Downloads:/downloads
